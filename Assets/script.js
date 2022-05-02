@@ -13,26 +13,26 @@ var numbers = ["0","1","2","3","4","5","6","7","8","9"];
 
 var specialChar = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
 
-var charAmt= window.prompt("How many character would you like your password to contain?");
-if (charAmt<8) {
-    window.alert("Password must be at least 8 characters.");
-    var charAmt= window.prompt("How many character would you like your password to contain?");
-};
-
-var specialConfirm= window.confirm("Click OK to confirm including special characters.");
-var numConfirm= window.confirm("Click OK to confirm including numeric characters.");
-var lowerConfirm= window.confirm("Click OK to confirm including lowercase characters.");
-var upperConfirm= window.confirm("Click OK to confirm including uppercase characters.");
-
-var passwordPrompts = function () {
-  window.alert("Welcome to Password Pioneer! Answer the following prompts to generate your password. Click OK to continue.");
-};
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  window.alert("Welcome to Password Pioneer! Answer the following prompts to generate your password. Click OK to continue.");
+
+  // Prompt user input for number of characters in the password (>8)
+  var charAmt= window.prompt("How many character would you like your password to contain?");
+  if (charAmt<8) {
+      window.alert("Password must be at least 8 characters.");
+      var charAmt= window.prompt("How many character would you like your password to contain?");
+  };
+
+  // Ask user to confirm desired password criteria
+  var specialConfirm= window.confirm("Click OK to confirm including special characters.");
+  var numConfirm= window.confirm("Click OK to confirm including numeric characters.");
+  var lowerConfirm= window.confirm("Click OK to confirm including lowercase characters.");
+  var upperConfirm= window.confirm("Click OK to confirm including uppercase characters.");
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
