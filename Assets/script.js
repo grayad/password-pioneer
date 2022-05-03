@@ -28,6 +28,10 @@ function writePassword() {
     window.alert("Password must be at least 8 characters.");
     var charAmt= window.prompt("How many character would you like your password to contain?");
   }
+  if (charAmt>128) {
+    window.alert("Password cannot be more than 128 characters.");
+    var charAmt= window.prompt("How many character would you like your password to contain?");
+  }
   console.log(charAmt);
 
   // Ask user to confirm desired password criteria
@@ -54,6 +58,23 @@ function writePassword() {
 
   console.log(passwordArray);
 
+  // var passwordChars=[""];
+  // for (var i=0; i<=passwordArray.length; i++) {
+  //   var char=Math.floor(Math.random()*charAmt+1);
+  //   password=array.join(char);
+  // };
+  // console.log(password);
+
+  var passwordLength=charAmt;
+  var generatedPassword = [];
+  for (var i=0; i<=passwordLength-1; i++) {
+    var randomIndex=Math.floor(Math.random() * passwordArray.length);
+    var randomLetter=passwordArray[randomIndex];
+    generatedPassword.push(randomLetter);
+  }
+  console.log(generatedPassword);
+  var passwordString=Array.join(generatedPassword);
+  console.log(passwordString);
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
