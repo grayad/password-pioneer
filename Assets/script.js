@@ -34,53 +34,71 @@ function writePassword() {
   }
   console.log(charAmt);
 
+  // array to hold initial random characters (one of each selected)
+  var includedChars=[];
+
   // Ask user to confirm desired password criteria
   var specialConfirm= window.confirm("Click OK to confirm including special characters.");
   if (specialConfirm) {
     passwordArray.push.apply(passwordArray,specialChar);
+    for (var i=0; i<=specialChar.length-32; i++) {
+      var randomIndex=Math.floor(Math.random() * specialChar.length);
+      var randomSpecial=specialChar[randomIndex];
+      includedChars.push(randomSpecial);
+    }
   }
-
   var numConfirm= window.confirm("Click OK to confirm including numeric characters.");
   if (numConfirm) {
     passwordArray.push.apply(passwordArray,numbers);
+    for (var i=0; i<=numbers.length-10; i++) {
+      var randomIndex=Math.floor(Math.random() * numbers.length);
+      var randomNum=numbers[randomIndex];
+      includedChars.push(randomNum);
+    }
   }
-
   var lowerConfirm= window.confirm("Click OK to confirm including lowercase characters.");
   if (lowerConfirm) {
     passwordArray.push.apply(passwordArray,lowercase);
+    for (var i=0; i<=lowercase.length-26; i++) {
+      var randomIndex=Math.floor(Math.random() * lowercase.length);
+      var randomLower=lowercase[randomIndex];
+      includedChars.push(randomLower);
+    }
   }
-
-
   var upperConfirm= window.confirm("Click OK to confirm including uppercase characters.");
   if (upperConfirm) {
     passwordArray.push.apply(passwordArray,uppercase);
+    for (var i=0; i<=uppercase.length-26; i++) {
+      var randomIndex=Math.floor(Math.random() * uppercase.length);
+      var randomUpper=uppercase[randomIndex];
+      includedChars.push(randomUpper);
+    }
   }
 
   console.log(passwordArray);
+  console.log(includedChars);
 
-  // var passwordChars=[""];
-  // for (var i=0; i<=passwordArray.length; i++) {
-  //   var char=Math.floor(Math.random()*charAmt+1);
-  //   password=array.join(char);
-  // };
-  // console.log(password);
-
-  var passwordLength=charAmt;
-  var generatedPassword = [];
-  for (var i=0; i<=passwordLength-1; i++) {
-    var randomIndex=Math.floor(Math.random() * passwordArray.length);
-    var randomLetter=passwordArray[randomIndex];
-    generatedPassword.push(randomLetter);
+  var passwordLength = charAmt;
+  var createdPassword = [];
+  var finalPassword = [];
+  var generatePassword = function() {
+    for (var i=0; i<=passwordLength-includedChars.length-1; i++) {
+      var randomIndex=Math.floor(Math.random() * passwordArray.length);
+      var randomLetter=passwordArray[randomIndex];
+      createdPassword.push(randomLetter);
+    }
+    console.log(createdPassword);
+    var passwordString=createdPassword.join('');
+    console.log(passwordString);
+    var oneOfEach=includedChars.join('');
+    finalPassword= passwordString + oneOfEach;
+    console.log(finalPassword);
   }
-  console.log(generatedPassword);
-  var passwordString=Array.join(generatedPassword);
-  console.log(passwordString);
 
-  var password = generatePassword();
+  generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-
+  passwordText.value = finalPassword;
 }
 
 // Add event listener to generate button
